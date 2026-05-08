@@ -4,15 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
-  FaClock,
-  FaMagic,
-  FaAward,
-  FaBox,
-  FaSyncAlt,
-  FaFire,
-  FaCalendarAlt,
-  FaMapMarkerAlt,
-} from "react-icons/fa";
+  Clock,
+  Sparkles,
+  Award,
+  Package,
+  RefreshCw,
+  Flame,
+  CalendarDays,
+  MapPin,
+} from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SectionHeader } from "./SectionHeader";
@@ -262,7 +262,7 @@ function SpecialCard({ special, now }: { special: Special; now: number }) {
   return (
     <article className="rounded-3xl border-2 border-primary/30 bg-gradient-soft p-6 shadow-soft flex flex-col gap-4">
       <div className="flex items-center gap-2">
-        <FaFire className="w-5 h-5 text-primary" aria-hidden="true" />
+        <Flame className="w-5 h-5 text-primary" aria-hidden="true" />
         <h3 className="font-display text-xl font-semibold">{special.title}</h3>
       </div>
 
@@ -335,7 +335,7 @@ function TrainingEvents({ now }: { now: number }) {
             key={ev.id}
             className="rounded-3xl border bg-card p-6 shadow-soft flex flex-col gap-3 text-center"
           >
-            <FaCalendarAlt className="w-7 h-7 text-primary mx-auto" aria-hidden="true" />
+            <CalendarDays className="w-7 h-7 text-primary mx-auto" aria-hidden="true" />
             <time
               className="font-display text-lg font-semibold"
               dateTime={ev.date.toISOString().slice(0, 10)}
@@ -343,7 +343,7 @@ function TrainingEvents({ now }: { now: number }) {
               {ev.label}
             </time>
             <div className="flex items-center justify-center gap-1 text-sm text-muted-foreground">
-              <FaMapMarkerAlt className="w-4 h-4 shrink-0" aria-hidden="true" />
+              <MapPin className="w-4 h-4 shrink-0" aria-hidden="true" />
               <span>{ev.location}</span>
             </div>
             <Button asChild size="sm" className="mt-auto bg-gradient-pink text-white rounded-full">
@@ -404,23 +404,23 @@ function FlipCard({ course }: { course: Course }) {
           </div>
 
           <div className="flex items-center gap-2 mt-3 text-sm text-foreground/70">
-            <FaClock className="w-4 h-4" aria-hidden="true" />
+            <Clock className="w-4 h-4" aria-hidden="true" />
             <span>{course.duration}</span>
           </div>
 
           <ul className="mt-3 space-y-1.5 text-sm text-foreground/80">
             <li className="flex items-center gap-2">
-              <FaBox className="w-4 h-4 text-primary shrink-0" aria-hidden="true" /> Certification
+              <Package className="w-4 h-4 text-primary shrink-0" aria-hidden="true" /> Certification
               on completion
             </li>
             {course.deposit && (
               <li className="flex items-center gap-2">
-                <FaAward className="w-4 h-4 text-primary shrink-0" aria-hidden="true" />{" "}
+                <Award className="w-4 h-4 text-primary shrink-0" aria-hidden="true" />{" "}
                 {course.deposit}
               </li>
             )}
             <li className="flex items-center gap-2">
-              <FaMagic className="w-4 h-4 text-primary shrink-0" aria-hidden="true" /> Hands-on
+              <Sparkles className="w-4 h-4 text-primary shrink-0" aria-hidden="true" /> Hands-on
               practice
             </li>
           </ul>
@@ -428,7 +428,7 @@ function FlipCard({ course }: { course: Course }) {
           <div className="flex items-center justify-between mt-auto pt-4 border-t">
             <span className="font-display text-3xl text-primary">{course.price}</span>
             <div className="flex items-center gap-1 text-xs text-muted-foreground">
-              <FaSyncAlt className="w-3 h-3" aria-hidden="true" /> Tap for details
+              <RefreshCw className="w-3 h-3" aria-hidden="true" /> Tap for details
             </div>
           </div>
         </article>
@@ -440,7 +440,7 @@ function FlipCard({ course }: { course: Course }) {
           <ul className="mt-4 space-y-2 text-sm text-foreground/85 flex-1">
             {course.highlights.map((b) => (
               <li key={b} className="flex items-start gap-2">
-                <FaMagic className="w-4 h-4 text-primary shrink-0 mt-0.5" aria-hidden="true" />
+                <Sparkles className="w-4 h-4 text-primary shrink-0 mt-0.5" aria-hidden="true" />
                 <span>{b}</span>
               </li>
             ))}
