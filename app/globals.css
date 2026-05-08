@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fefcff;
+  --foreground: #172033;
+  --accent-sky: #a9dcff;
+  --accent-pink: #ffc0d7;
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes floatUpDown {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.bg-gradient-hero {
+  background: linear-gradient(135deg, #fdfbff 0%, #effbff 45%, #fff4f8 100%);
+  background-size: 180% 180%;
+}
+
+.animate-gradient {
+  animation: gradientShift 14s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: floatUpDown 7s ease-in-out infinite;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.9s ease both;
+}
+
+.font-display {
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+.font-script {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-style: italic;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: rgba(255, 192, 215, 0.55);
+  color: #0f172a;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at top left, rgba(169, 220, 255, 0.22), transparent 32%),
+    radial-gradient(circle at top right, rgba(255, 192, 215, 0.2), transparent 30%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+  z-index: -1;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.42) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.42) 1px, transparent 1px);
+  background-size: 120px 120px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.28), transparent 70%);
+  opacity: 0.25;
+  z-index: -1;
+}
