@@ -5,12 +5,14 @@ import { Footer } from "@/components/site/Footer";
 import { Gallery } from "@/components/site/Gallery";
 import { Hero } from "@/components/site/Hero";
 import { Navbar } from "@/components/site/Navbar";
+import { ScrollProgress } from "@/components/site/ScrollProgress";
 import { Testimonials } from "@/components/site/Testimonials";
 
 export default function Home() {
   return (
     <main className="overflow-hidden">
       <Navbar />
+      <ScrollProgress />
       <Hero />
       <Courses />
       <Gallery />
