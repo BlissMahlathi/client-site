@@ -7,8 +7,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { SectionHeader } from "./SectionHeader";
-import { FaCheckCircle, FaFire } from "react-icons/fa";
+import { CheckCircle2, Flame } from "lucide-react";
 import { z } from "zod";
+import { motion, useReducedMotion } from "framer-motion";
+import { fadeUp, reducedFadeUp } from "@/lib/animation";
 
 const COURSE_OPTIONS = [
   {
@@ -93,6 +95,8 @@ export function Booking() {
     null,
   );
   const [error, setError] = useState<string | null>(null);
+  const shouldReduceMotion = useReducedMotion();
+  const formVariants = shouldReduceMotion ? reducedFadeUp : fadeUp;
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -130,11 +134,17 @@ export function Booking() {
           title="Book Your Spot"
           subtitle="Tell us a little about yourself and we'll be in touch within 24 hours."
         />
-        <div className="mt-12 rounded-3xl bg-gradient-soft p-1 shadow-soft">
+        <motion.div
+          className="mt-12 rounded-3xl bg-gradient-soft p-1 shadow-soft"
+          variants={formVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           <div className="bg-card rounded-[calc(1.5rem-2px)] p-8">
             {submitted ? (
               <div className="text-center py-12 animate-fade-up">
-                <FaCheckCircle className="w-16 h-16 text-primary mx-auto" />
+                <CheckCircle2 className="w-16 h-16 text-primary mx-auto" />
                 <h3 className="font-display text-3xl mt-4">Thank you!</h3>
                 <p className="text-muted-foreground mt-2">
                   We&apos;ve received your enquiry
@@ -194,7 +204,7 @@ export function Booking() {
                       >
                         <div className="flex items-center gap-2">
                           <RadioGroupItem id={opt.label} value={opt.value} />
-                          {opt.hot && <FaFire className="w-4 h-4 text-rose-500" />}
+                          {opt.hot && <Flame className="w-4 h-4 text-rose-500" />}
                           <span className="font-display text-lg">{opt.label}</span>
                         </div>
                         <div className="mt-2 font-semibold text-primary">{opt.price}</div>
@@ -227,7 +237,7 @@ export function Booking() {
               </form>
             )}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import { SectionHeader } from "./SectionHeader";
+import { motion, useReducedMotion } from "framer-motion";
+import { fadeUp, staggerContainer, reducedFadeUp, reducedStaggerContainer } from "@/lib/animation";
 
 type Post = {
   id: string;
@@ -42,6 +46,11 @@ const posts: Post[] = [
 ];
 
 export function Blog() {
+  const shouldReduceMotion = useReducedMotion();
+
+  const container = shouldReduceMotion ? reducedStaggerContainer : staggerContainer;
+  const item = shouldReduceMotion ? reducedFadeUp : fadeUp;
+
   return (
     <section id="blog" className="py-24 px-6 bg-background">
       <div className="max-w-7xl mx-auto">
@@ -50,12 +59,18 @@ export function Blog() {
           title="Blog & Vlog"
           subtitle="Tutorials, trends, and behind-the-scenes."
         />
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-          {posts.map((p, i) => (
-            <article
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12"
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+        >
+          {posts.map((p) => (
+            <motion.article
               key={p.id}
-              className="rounded-3xl border bg-card overflow-hidden shadow-soft hover:shadow-glow transition-all hover:-translate-y-1 animate-fade-up"
-              style={{ animationDelay: `${i * 80}ms` }}
+              variants={item}
+              className="rounded-3xl border bg-card overflow-hidden shadow-soft hover:shadow-glow transition-all hover:-translate-y-1"
             >
               {p.media_url ? (
                 <Image
@@ -89,9 +104,9 @@ export function Blog() {
                 <h3 className="font-display text-xl font-semibold mt-3">{p.title}</h3>
                 <p className="text-sm text-muted-foreground mt-2 line-clamp-3">{p.excerpt}</p>
               </div>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

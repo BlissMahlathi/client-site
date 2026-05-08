@@ -6,18 +6,21 @@ import { Gallery } from "@/components/site/Gallery";
 import { Hero } from "@/components/site/Hero";
 import { Navbar } from "@/components/site/Navbar";
 import { Testimonials } from "@/components/site/Testimonials";
+import { PageTransition } from "@/components/ui/PageTransition";
 
 export default function Home() {
   return (
-    <main className="overflow-hidden">
-      <Navbar />
-      <Hero />
-      <Courses />
-      <Gallery />
-      <Blog />
-      <Testimonials />
-      <Booking />
-      <Footer />
-    </main>
+    <PageTransition>
+      <main className="overflow-hidden">
+        <Navbar />
+        <Hero />
+        <Courses />
+        <Gallery />
+        <Blog />
+        <Testimonials />
+        <Booking />
+        <Footer />
+      </main>
+    </PageTransition>
   );
 }

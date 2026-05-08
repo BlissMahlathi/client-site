@@ -1,5 +1,9 @@
-import { FaStar } from "react-icons/fa";
+"use client";
+
+import { Star } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
+import { motion, useReducedMotion } from "framer-motion";
+import { fadeUp, staggerContainer, reducedFadeUp, reducedStaggerContainer } from "@/lib/animation";
 
 const testimonials = [
   {
@@ -33,20 +37,31 @@ const testimonials = [
 ];
 
 export function Testimonials() {
+  const shouldReduceMotion = useReducedMotion();
+
+  const container = shouldReduceMotion ? reducedStaggerContainer : staggerContainer;
+  const item = shouldReduceMotion ? reducedFadeUp : fadeUp;
+
   return (
     <section id="testimonials" className="py-24 px-6 bg-gradient-soft">
       <div className="max-w-7xl mx-auto">
         <SectionHeader eyebrow="Love Notes" title="What Students Say" />
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12"
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+        >
           {testimonials.map((t, i) => (
-            <figure
+            <motion.figure
               key={i}
-              className="rounded-3xl bg-card p-6 shadow-soft animate-fade-up"
-              style={{ animationDelay: `${i * 80}ms` }}
+              variants={item}
+              className="rounded-3xl bg-card p-6 shadow-soft hover:shadow-glow transition-shadow"
             >
               <div className="flex gap-1 text-primary">
                 {Array.from({ length: t.rating }).map((_, j) => (
-                  <FaStar key={j} className="w-4 h-4 fill-current" />
+                  <Star key={j} className="w-4 h-4 fill-current" />
                 ))}
               </div>
               <blockquote className="mt-4 text-sm text-foreground/80 italic">
@@ -56,9 +71,9 @@ export function Testimonials() {
                 <div className="font-semibold">{t.name}</div>
                 <div className="text-xs text-muted-foreground">{t.course}</div>
               </figcaption>
-            </figure>
+            </motion.figure>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
