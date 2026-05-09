@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 const links = [
@@ -26,9 +27,9 @@ export function Navbar() {
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         <a
           href="#top"
-          className="font-script text-3xl bg-gradient-pink bg-clip-text text-transparent"
+          className="flex items-center"
         >
-          Tasha&apos;s Glamour
+          <Image src="/logo.png" alt="logo" width={50} height={50} className="h-auto w-auto" />
         </a>
         <ul className="hidden md:flex items-center gap-8">
           {links.map((l) => (
