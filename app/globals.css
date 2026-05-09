@@ -83,6 +83,10 @@ body {
   min-height: 100vh;
 }
 
+body.mobile-menu-open {
+  overflow: hidden;
+}
+
 body::before {
   content: "";
   position: fixed;

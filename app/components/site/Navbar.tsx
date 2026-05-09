@@ -23,17 +23,18 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    const onResize = () => {
-      if (window.innerWidth >= MOBILE_BREAKPOINT) setOpen(false);
+    const mediaQuery = window.matchMedia(`(min-width: ${MOBILE_BREAKPOINT}px)`);
+    const onBreakpointChange = (event: MediaQueryListEvent) => {
+      if (event.matches) setOpen(false);
     };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    mediaQuery.addEventListener("change", onBreakpointChange);
+    return () => mediaQuery.removeEventListener("change", onBreakpointChange);
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    document.body.classList.toggle("mobile-menu-open", open);
     return () => {
-      document.body.style.overflow = "";
+      document.body.classList.remove("mobile-menu-open");
     };
   }, [open]);
 
