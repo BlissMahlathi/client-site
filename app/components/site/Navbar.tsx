@@ -10,6 +10,7 @@ const links = [
   { href: "#testimonials", label: "Testimonials" },
   { href: "#contact", label: "Book" },
 ];
+const MOBILE_BREAKPOINT = 768;
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -23,7 +24,7 @@ export function Navbar() {
 
   useEffect(() => {
     const onResize = () => {
-      if (window.innerWidth >= 768) setOpen(false);
+      if (window.innerWidth >= MOBILE_BREAKPOINT) setOpen(false);
     };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
