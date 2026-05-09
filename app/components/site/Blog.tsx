@@ -43,7 +43,7 @@ const posts: Post[] = [
 
 export function Blog() {
   return (
-    <section id="blog" className="py-24 px-6 bg-background">
+    <section id="blog" className="py-24 px-6 bg-gradient-soft">
       <div className="max-w-7xl mx-auto">
         <SectionHeader
           eyebrow="Stories"

@@ -123,7 +123,7 @@ export function Booking() {
   }
 
   return (
-    <section id="contact" className="py-24 px-6 bg-background">
+    <section id="contact" className="py-24 px-6 bg-gradient-soft">
       <div className="max-w-3xl mx-auto">
         <SectionHeader
           eyebrow="Get in Touch"
