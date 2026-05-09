@@ -34,7 +34,7 @@ export function Navbar() {
   useEffect(() => {
     document.body.classList.toggle("mobile-menu-open", open);
     return () => {
-      document.body.classList.remove("mobile-menu-open");
+      if (open) document.body.classList.remove("mobile-menu-open");
     };
   }, [open]);
 
