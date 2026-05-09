@@ -10,6 +10,7 @@ const links = [
   { href: "#testimonials", label: "Testimonials" },
   { href: "#contact", label: "Book" },
 ];
+// Keep in sync with Tailwind's `md` breakpoint.
 const MOBILE_BREAKPOINT = 768;
 
 export function Navbar() {
@@ -32,9 +33,20 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    document.body.classList.toggle("mobile-menu-open", open);
+    if (open) {
+      const locks = Number(document.body.dataset.mobileMenuLocks ?? "0") + 1;
+      document.body.dataset.mobileMenuLocks = String(locks);
+      document.body.classList.add("mobile-menu-open");
+    }
     return () => {
-      if (open) document.body.classList.remove("mobile-menu-open");
+      if (!open) return;
+      const locks = Math.max(Number(document.body.dataset.mobileMenuLocks ?? "1") - 1, 0);
+      if (locks === 0) {
+        document.body.classList.remove("mobile-menu-open");
+        delete document.body.dataset.mobileMenuLocks;
+      } else {
+        document.body.dataset.mobileMenuLocks = String(locks);
+      }
     };
   }, [open]);
 
