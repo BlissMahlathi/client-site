@@ -2,27 +2,27 @@ import { FaInstagram } from "react-icons/fa";
 
 export function Footer() {
   return (
-    <footer className="bg-gradient-soft text-foreground py-16 px-6">
+    <footer className="bg-gradient-soft text-slate-600 py-16 px-6">
       <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
         <div>
           <p className="font-script text-3xl bg-gradient-pink bg-clip-text text-transparent">
             Tasha&apos;s Glamour
           </p>
-          <p className="mt-4 text-sm text-background/60 max-w-xs">
+          <p className="mt-4 text-sm text-slate-600 max-w-xs">
             Professional nail training academy. Register with R200 and pay your training amount at
             the class.
           </p>
         </div>
         <div>
           <h4 className="font-display text-lg mb-4">Visit Us</h4>
-          <p className="text-sm text-background/70">296 Pretorius Street</p>
-          <p className="text-sm text-background/70">Premium Towers (next to Steers)</p>
-          <p className="text-sm text-background/70 mt-2">Registration: R200 (separate)</p>
+          <p className="text-sm text-slate-600">296 Pretorius Street</p>
+          <p className="text-sm text-slate-600">Premium Towers (next to Steers)</p>
+          <p className="text-sm text-slate-600 mt-2">Registration: R200 (separate)</p>
         </div>
         <div>
           <h4 className="font-display text-lg mb-4">Follow</h4>
-          <p className="text-sm text-background/70">TikTok: Tasha&apos;s Glamour Training</p>
-          <p className="text-sm text-background/70">Instagram: @tashas_glamour11</p>
+          <p className="text-sm text-slate-600">TikTok: Tasha&apos;s Glamour Training</p>
+          <p className="text-sm text-slate-600">Instagram: @tashas_glamour11</p>
           <div className="flex gap-4 mt-4">
             <a
               href="https://instagram.com/tashas_glamour11"
@@ -47,7 +47,7 @@ export function Footer() {
           </div>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-background/10 text-center text-xs text-background/50">
+      <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-background/10 text-center text-xs text-slate-600">
         © {new Date().getFullYear()} Tasha&apos;s Glamour Training. All rights reserved.
       </div>
     </footer>
