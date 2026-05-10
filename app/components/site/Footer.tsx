@@ -2,7 +2,7 @@ import { FaInstagram } from "react-icons/fa";
 
 export function Footer() {
   return (
-    <footer className="bg-gradient-soft text-slate-600 py-16 px-6">
+    <footer data-gsap-text className="bg-gradient-soft text-slate-600 py-16 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
         <div>
           <p className="font-script text-3xl bg-gradient-pink bg-clip-text text-transparent">

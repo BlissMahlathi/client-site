@@ -8,7 +8,8 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-screen flex items-center overflow-hidden bg-gradient-hero animate-gradient"
+      data-gsap-text
+      className="relative min-h-screen flex items-center overflow-hidden bg-gradient-hero animate-gradient pt-16 sm:pt-[72px]"
     >
       {/* Decorative orbs */}
       <div
@@ -21,10 +22,10 @@ export function Hero() {
         aria-hidden="true"
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 py-20 md:py-32 grid md:grid-cols-2 gap-12 items-center">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-28 grid md:grid-cols-2 gap-10 md:gap-12 items-center">
         {/* TEXT */}
-        <div className="animate-fade-up">
-          <p className="font-script text-2xl text-primary mb-4">Welcome to Tasha&apos;s Glamour</p>
+        <div className="max-w-xl">
+          <p className="font-script text-xl sm:text-2xl text-primary mb-4">Welcome to Tasha&apos;s Glamour</p>
 
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-display font-semibold leading-[1.05] text-foreground">
             Learn the Art of <em className="font-script text-primary not-italic">Beautiful</em>{" "}
@@ -36,11 +37,11 @@ export function Hero() {
             deposit to secure your spot and train with a certified pro.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-4">
+          <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
             <Button
               asChild
               size="lg"
-              className="bg-gradient-pink text-white shadow-soft hover:shadow-glow rounded-full px-8 h-12 focus-visible:ring-2 focus-visible:ring-primary"
+              className="w-full sm:w-auto bg-gradient-pink text-white shadow-soft hover:shadow-glow rounded-full px-8 h-12 focus-visible:ring-2 focus-visible:ring-primary transition-transform duration-200 active:scale-[0.98]"
             >
               <a href="#contact">Book a Course</a>
             </Button>
@@ -49,7 +50,7 @@ export function Hero() {
               asChild
               size="lg"
               variant="outline"
-              className="rounded-full px-8 h-12 border-primary/40 hover:bg-accent focus-visible:ring-2 focus-visible:ring-primary"
+              className="w-full sm:w-auto rounded-full px-8 h-12 border-primary/40 hover:bg-accent focus-visible:ring-2 focus-visible:ring-primary transition-transform duration-200 active:scale-[0.98]"
             >
               <a href="#gallery">View Gallery</a>
             </Button>
@@ -57,7 +58,7 @@ export function Hero() {
         </div>
 
         {/* IMAGE */}
-        <div className="relative animate-fade-up" style={{ animationDelay: "0.2s" }}>
+        <div className="relative">
           <div
             className="absolute inset-0 bg-gradient-pink rounded-[3rem] blur-2xl opacity-30"
             aria-hidden="true"

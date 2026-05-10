@@ -20,7 +20,7 @@ export function Gallery() {
   const tiles = defaults;
 
   return (
-    <section id="gallery" className="py-24 px-6 bg-gradient-soft">
+    <section id="gallery" data-gsap-text className="py-24 px-4 sm:px-6 bg-gradient-soft">
       <div className="max-w-7xl mx-auto">
         <SectionHeader
           eyebrow="Portfolio"
@@ -31,7 +31,7 @@ export function Gallery() {
           {tiles.map((it, i) => (
             <div
               key={it.id}
-              className="break-inside-avoid rounded-2xl overflow-hidden shadow-soft animate-fade-up"
+              className="break-inside-avoid rounded-2xl overflow-hidden shadow-soft transition-transform duration-300 hover:-translate-y-1"
               style={{ animationDelay: `${i * 60}ms` }}
             >
               <Image

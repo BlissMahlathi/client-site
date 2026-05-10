@@ -123,7 +123,7 @@ export function Booking() {
   }
 
   return (
-    <section id="contact" className="py-24 px-6 bg-gradient-soft">
+    <section id="contact" data-gsap-text className="py-24 px-4 sm:px-6 bg-gradient-soft">
       <div className="max-w-3xl mx-auto">
         <SectionHeader
           eyebrow="Get in Touch"
@@ -133,7 +133,7 @@ export function Booking() {
         <div className="mt-12 rounded-3xl bg-gradient-soft p-1 shadow-soft">
           <div className="bg-card rounded-[calc(1.5rem-2px)] p-8">
             {submitted ? (
-              <div className="text-center py-12 animate-fade-up">
+              <div className="text-center py-12">
                 <FaCheckCircle className="w-16 h-16 text-primary mx-auto" />
                 <h3 className="font-display text-3xl mt-4">Thank you!</h3>
                 <p className="text-muted-foreground mt-2">

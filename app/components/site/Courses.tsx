@@ -211,7 +211,7 @@ export function Courses() {
   }, []);
 
   return (
-    <section id="courses" ref={sectionRef} className="py-24 px-6 bg-background">
+    <section id="courses" ref={sectionRef} data-gsap-text className="py-24 px-4 sm:px-6 bg-background">
       <div className="max-w-7xl mx-auto">
         <div className="courses-header">
           <SectionHeader
@@ -376,7 +376,7 @@ function FlipCard({ course }: { course: Course }) {
       tabIndex={0}
       aria-pressed={flipped}
       aria-label={`${course.name} — ${course.duration}, ${course.price}. Press Enter or Space to ${flipped ? "see pricing" : "see what you'll learn"}.`}
-      className="course-card relative h-115 perspective-[1500px] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-3xl"
+      className="course-card relative h-[28rem] sm:h-[30rem] perspective-[1500px] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-3xl"
       onClick={() => setFlipped((f) => !f)}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {

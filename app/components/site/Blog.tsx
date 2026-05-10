@@ -43,7 +43,7 @@ const posts: Post[] = [
 
 export function Blog() {
   return (
-    <section id="blog" className="py-24 px-6 bg-gradient-soft">
+    <section id="blog" data-gsap-text className="py-24 px-4 sm:px-6 bg-gradient-soft">
       <div className="max-w-7xl mx-auto">
         <SectionHeader
           eyebrow="Stories"
@@ -54,7 +54,7 @@ export function Blog() {
           {posts.map((p, i) => (
             <article
               key={p.id}
-              className="rounded-3xl border bg-card overflow-hidden shadow-soft hover:shadow-glow transition-all hover:-translate-y-1 animate-fade-up"
+              className="rounded-3xl border bg-card overflow-hidden shadow-soft hover:shadow-glow transition-all duration-300 hover:-translate-y-1 active:scale-[0.99]"
               style={{ animationDelay: `${i * 80}ms` }}
             >
               {p.media_url ? (

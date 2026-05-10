@@ -34,14 +34,14 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="py-24 px-6 bg-gradient-soft">
+    <section id="testimonials" data-gsap-text className="py-24 px-4 sm:px-6 bg-gradient-soft">
       <div className="max-w-7xl mx-auto">
         <SectionHeader eyebrow="Love Notes" title="What Students Say" />
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
           {testimonials.map((t, i) => (
             <figure
               key={i}
-              className="rounded-3xl bg-card p-6 shadow-soft animate-fade-up"
+              className="rounded-3xl bg-card p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-glow"
               style={{ animationDelay: `${i * 80}ms` }}
             >
               <div className="flex gap-1 text-primary">
