@@ -28,8 +28,14 @@ export function Hero() {
           <p className="font-script text-xl sm:text-2xl text-primary mb-4">Welcome to Tasha&apos;s Glamour</p>
 
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-display font-semibold leading-[1.05] text-foreground">
-            Learn the Art of <em className="font-script text-primary not-italic">Beautiful</em>{" "}
-            Nails &amp; Lashes
+            <span className="word inline-block mr-2">Learn</span>
+            <span className="word inline-block mr-2">the</span>
+            <span className="word inline-block mr-2">Art</span>
+            <span className="word inline-block mr-2">of</span>
+            <em className="font-script text-primary not-italic inline-block mr-2 word">Beautiful</em>
+            <span className="word inline-block mr-2">Nails</span>
+            <span className="word inline-block mr-2">&amp;</span>
+            <span className="word inline-block">Lashes</span>
           </h1>
 
           <p className="mt-6 text-lg text-muted-foreground max-w-md">
@@ -58,7 +64,7 @@ export function Hero() {
         </div>
 
         {/* IMAGE */}
-        <div className="relative">
+        <div className="relative" data-parallax data-speed="0.12">
           <div
             className="absolute inset-0 bg-gradient-pink rounded-[3rem] blur-2xl opacity-30"
             aria-hidden="true"

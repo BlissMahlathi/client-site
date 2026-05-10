@@ -31,6 +31,8 @@ export function Gallery() {
           {tiles.map((it, i) => (
             <div
               key={it.id}
+              data-parallax
+              data-speed={0.04 + (i % 3) * 0.02}
               className="break-inside-avoid rounded-2xl overflow-hidden shadow-soft transition-transform duration-300 hover:-translate-y-1"
               style={{ animationDelay: `${i * 60}ms` }}
             >

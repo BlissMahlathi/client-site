@@ -388,7 +388,7 @@ function FlipCard({ course }: { course: Course }) {
       <div ref={innerRef} className="relative w-full h-full transform-3d">
         {/* FRONT */}
         <article className="absolute inset-0 backface-hidden rounded-3xl bg-card border p-6 shadow-soft hover:shadow-glow transition-shadow flex flex-col">
-          <div className="h-28 -mx-6 -mt-6 mb-5 rounded-t-3xl bg-gradient-soft animate-gradient" />
+          <div data-parallax data-speed="0.06" className="h-28 -mx-6 -mt-6 mb-5 rounded-t-3xl bg-gradient-soft animate-gradient" />
           <h3 className="font-display text-xl font-semibold leading-tight">{course.name}</h3>
 
           <div className="flex flex-wrap gap-1.5 mt-2">
