@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
+import { blogsApi } from '@/lib/adminApi'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { toast } from 'sonner'
@@ -32,15 +33,17 @@ export default function BlogsPage() {
     fetchPosts()
   }, [])
 
+  const getToken = async (): Promise<string> => {
+    const { data } = await supabase.auth.getSession()
+    if (!data.session?.access_token) throw new Error('No auth token')
+    return data.session.access_token
+  }
+
   const fetchPosts = async () => {
     try {
       setIsLoading(true)
-      const { data, error } = await supabase
-        .from('posts')
-        .select('*')
-        .order('created_at', { ascending: false })
-
-      if (error) throw error
+      const token = await getToken()
+      const data = await blogsApi.getAll(token)
       setPosts(data || [])
     } catch (error) {
       toast.error('Failed to fetch posts')
@@ -52,28 +55,21 @@ export default function BlogsPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
+      const token = await getToken()
+      
       if (editingId) {
-        const { error } = await supabase
-          .from('posts')
-          .update({
-            title: formData.title,
-            content: formData.content,
-            published_at: formData.published_at,
-          })
-          .eq('id', editingId)
-
-        if (error) throw error
+        await blogsApi.update(editingId, {
+          title: formData.title,
+          content: formData.content,
+          published_at: formData.published_at,
+        }, token)
         toast.success('Post updated successfully')
       } else {
-        const { error } = await supabase.from('posts').insert([
-          {
-            title: formData.title,
-            content: formData.content,
-            published_at: formData.published_at,
-          },
-        ])
-
-        if (error) throw error
+        await blogsApi.create({
+          title: formData.title,
+          content: formData.content,
+          published_at: formData.published_at,
+        }, token)
         toast.success('Post created successfully')
       }
 
@@ -98,9 +94,8 @@ export default function BlogsPage() {
     if (!confirm('Are you sure you want to delete this post?')) return
 
     try {
-      const { error } = await supabase.from('posts').delete().eq('id', id)
-
-      if (error) throw error
+      const token = await getToken()
+      await blogsApi.delete(id, token)
       toast.success('Post deleted successfully')
       fetchPosts()
     } catch (error) {
