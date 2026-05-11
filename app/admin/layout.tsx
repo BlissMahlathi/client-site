@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { createClient } from '@/app/lib/supabase/client'
+import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
-import { FiLogOut, FiHome, FiImage, FiBook, FiGift, FiBarChart3 } from 'react-icons/fi'
+import { FiLogOut, FiHome, FiImage, FiBook, FiGift, FiBarChart } from 'react-icons/fi'
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true)
@@ -69,7 +69,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <NavLink href="/admin/gallery" icon={<FiImage />}>
             Gallery
           </NavLink>
-          <NavLink href="/admin/courses" icon={<FiBarChart3 />}>
+          <NavLink href="/admin/courses" icon={<FiBarChart />}>
             Courses
           </NavLink>
         </nav>
