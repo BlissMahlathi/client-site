@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
@@ -11,10 +11,18 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [isLoading, setIsLoading] = useState(true)
   const [user, setUser] = useState<any>(null)
   const router = useRouter()
+  const pathname = usePathname()
   const supabase = createClient()
+  const isLoginPage = pathname?.startsWith('/admin/login')
 
   useEffect(() => {
     const checkAuth = async () => {
+      // If we're on the login page, skip auth check so the login form can render
+      if (isLoginPage) {
+        setIsLoading(false)
+        return
+      }
+
       const {
         data: { user },
       } = await supabase.auth.getUser()
@@ -28,11 +36,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     }
 
     checkAuth()
-  }, [router, supabase])
+  }, [router, supabase, isLoginPage])
 
   const handleLogout = async () => {
     await supabase.auth.signOut()
     router.push('/admin/login')
+  }
+
+  if (isLoginPage) {
+    return <>{children}</>
   }
 
   if (isLoading) {
@@ -53,7 +65,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <aside className="w-64 bg-white shadow-lg">
         <div className="p-6 border-b">
           <h1 className="text-2xl font-bold text-gray-800">Admin Dashboard</h1>
-          <p className="text-sm text-gray-500 mt-2">{user.email}</p>
+          <p className="text-sm text-gray-500 mt-2">{user?.email ?? '—'}</p>
         </div>
 
         <nav className="p-4 space-y-2">

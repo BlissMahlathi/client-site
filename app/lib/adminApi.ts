@@ -3,7 +3,9 @@
  * This client handles all HTTP calls to the Python FastAPI backend
  */
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'
+// When NEXT_PUBLIC_API_BASE_URL is not set, use a relative path so
+// requests are sent to the same Next.js origin (e.g. `/api/...`).
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? ''
 
 interface ApiRequestOptions {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
