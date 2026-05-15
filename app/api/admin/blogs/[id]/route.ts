@@ -1,7 +1,7 @@
 export const dynamic = 'force-static';
 
 export async function generateStaticParams() {
-  return [];
+  return [{ id: 'placeholder' }];
 }
 
 export async function GET(_request: Request, { params }: { params: Promise<{ id: string }> }) {

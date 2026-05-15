@@ -1,5 +1,3 @@
-export const dynamic = 'force-static';
-
 export async function GET() {
   return new Response(JSON.stringify({ message: 'GET not implemented' }), { status: 501 });
 }
