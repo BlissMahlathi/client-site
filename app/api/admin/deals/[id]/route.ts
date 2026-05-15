@@ -4,17 +4,14 @@ export async function generateStaticParams() {
   return [];
 }
 
-export async function GET({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+export async function GET() {
   return new Response(JSON.stringify({ message: 'GET not implemented' }), { status: 501 });
 }
 
-export async function PUT({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+export async function PUT() {
   return new Response(JSON.stringify({ message: 'PUT not implemented' }), { status: 501 });
 }
 
-export async function DELETE({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+export async function DELETE() {
   return new Response(JSON.stringify({ message: 'DELETE not implemented' }), { status: 501 });
 }
