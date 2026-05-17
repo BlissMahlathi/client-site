@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { useState as useStateAlert } from 'react'
 import { toast } from 'sonner'
 
 export default function AdminLogin() {

@@ -2,12 +2,10 @@
 
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { galleriesApi } from '@/lib/adminApi'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { toast } from 'sonner'
 import { FiPlus, FiEdit2, FiTrash2, FiX } from 'react-icons/fi'
-import Image from 'next/image'
 
 type GalleryItem = {
   id: string

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { blogsApi } from '@/lib/adminApi'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { toast } from 'sonner'
@@ -16,12 +15,18 @@ type Post = {
   created_at: string
 }
 
+type BlogFormData = {
+  title: string
+  content: string
+  published_at: string
+}
+
 export default function BlogsPage() {
   const [posts, setPosts] = useState<Post[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [showForm, setShowForm] = useState(false)
   const [editingId, setEditingId] = useState<string | null>(null)
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<BlogFormData>({
     title: '',
     content: '',
     published_at: new Date().toISOString().split('T')[0],
@@ -29,21 +34,15 @@ export default function BlogsPage() {
 
   const supabase = createClient()
 
-  useEffect(() => {
-    fetchPosts()
-  }, [])
-
-  const getToken = async (): Promise<string> => {
-    const { data } = await supabase.auth.getSession()
-    if (!data.session?.access_token) throw new Error('No auth token')
-    return data.session.access_token
-  }
-
   const fetchPosts = async () => {
     try {
       setIsLoading(true)
-      const token = await getToken()
-      const data = await blogsApi.getAll(token)
+      const { data, error } = await supabase
+        .from('posts')
+        .select('*')
+        .order('created_at', { ascending: false })
+
+      if (error) throw error
       setPosts(data || [])
     } catch (error) {
       toast.error('Failed to fetch posts')
@@ -52,24 +51,35 @@ export default function BlogsPage() {
     }
   }
 
+  useEffect(() => {
+    fetchPosts()
+  }, [])
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
-      const token = await getToken()
-      
       if (editingId) {
-        await blogsApi.update(editingId, {
-          title: formData.title,
-          content: formData.content,
-          published_at: formData.published_at,
-        }, token)
+        const { error } = await supabase
+          .from('posts')
+          .update({
+            title: formData.title,
+            content: formData.content,
+            published_at: formData.published_at,
+          })
+          .eq('id', editingId)
+
+        if (error) throw error
         toast.success('Post updated successfully')
       } else {
-        await blogsApi.create({
-          title: formData.title,
-          content: formData.content,
-          published_at: formData.published_at,
-        }, token)
+        const { error } = await supabase.from('posts').insert([
+          {
+            title: formData.title,
+            content: formData.content,
+            published_at: formData.published_at,
+          },
+        ])
+
+        if (error) throw error
         toast.success('Post created successfully')
       }
 
@@ -94,8 +104,9 @@ export default function BlogsPage() {
     if (!confirm('Are you sure you want to delete this post?')) return
 
     try {
-      const token = await getToken()
-      await blogsApi.delete(id, token)
+      const { error } = await supabase.from('posts').delete().eq('id', id)
+
+      if (error) throw error
       toast.success('Post deleted successfully')
       fetchPosts()
     } catch (error) {
@@ -189,8 +200,8 @@ function BlogForm({
   onCancel,
   isEditing,
 }: {
-  data: any
-  setData: (data: any) => void
+  data: BlogFormData
+  setData: (data: BlogFormData) => void
   onSubmit: (e: React.FormEvent) => void
   onCancel: () => void
   isEditing: boolean

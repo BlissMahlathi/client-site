@@ -107,7 +107,6 @@ Make sure your `.env.local` has these variables (they should already be there):
 
 ```
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_publishable_key
 ```
 
@@ -232,24 +231,9 @@ create policy "Admin only" on posts for all using (auth.role() = 'authenticated'
 - Run the schema migration again to ensure all tables exist
 - Check Supabase dashboard for error logs
 
-## API Routes
+## Data Access Model
 
-The dashboard includes backend API routes for secure operations:
-
-- `POST /api/admin/deals` - Create deal
-- `PUT /api/admin/deals/[id]` - Update deal
-- `DELETE /api/admin/deals/[id]` - Delete deal
-- `POST /api/admin/blogs` - Create post
-- `PUT /api/admin/blogs/[id]` - Update post
-- `DELETE /api/admin/blogs/[id]` - Delete post
-- `POST /api/admin/galleries` - Add image
-- `PUT /api/admin/galleries/[id]` - Update image
-- `DELETE /api/admin/galleries/[id]` - Delete image
-- `POST /api/admin/courses` - Create course
-- `PUT /api/admin/courses/[id]` - Update course
-- `DELETE /api/admin/courses/[id]` - Delete course
-
-All routes require admin authentication.
+The admin dashboard reads and writes directly with the Supabase client (`@supabase/ssr`) from the admin pages. Access control is enforced by Supabase Authentication and your RLS policies.
 
 ## Next Steps
 
